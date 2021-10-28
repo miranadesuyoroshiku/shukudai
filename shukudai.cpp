@@ -10,7 +10,6 @@ int main()
 	// prepare the variables
 	int step_count = 0;  // for players' count ==> even: player1, odd: player2
 	int max_step = 9;    // the max step for this game could be
-	bool status = true;  // for the gaming win or lose, true means not winning
 	bool filled = false; // for the game board filled or not, false means it has capacity
 						 // filled is related with the comparison of step_count and max_step
 	string option = "";  // will ask player for options of play or quit then make decision
@@ -58,12 +57,18 @@ int main()
 		}
 	}
 
-	/*
+	// prepare the horizontal grids during gaming
+	string horizontal_grid_0 = horizontal_grid;
+	string horizontal_grid_1 = horizontal_grid;
+	string horizontal_grid_2 = horizontal_grid;
+
 	// game playing...
-	while (status && !filled)
+	while (!filled)
 	{
+		// ask user for location and sketch the current game board
 		for (int i = 0; i < max_step; i++)
 		{
+			// ask user for location
 			if (i % 2 == 0)
 			{
 				cout << player0 << ", please enter the x and y coordinate of your choice: ";
@@ -74,10 +79,46 @@ int main()
 				cout << player1 << ", please enter the x and y coordinate of your choice: ";
 				cin >> player1_x >> player1_y;
 			}
+
+			// increment the step count
+			step_count++;
+			filled = (step_count < max_step) ? false : true;
+
+
+			// modify the horizontal_grid_0, horizontal_grid_1, horizontal_grid_2 accordingly
+			// i is an important value
+			// using for loop or if decision with concatnation???
+
+
+
 			// print the game board
+			for (int i = 0; i < lines; i++)
+			{
+				if (i % 2 == 0)
+				{
+					cout << horizontal_grid;
+				}
+				else
+				{
+					switch (i)
+					{
+					case 1:
+						// print the first horizontal grid
+						cout << horizontal_grid_0;
+						break;
+					case 3:
+						// print the second horizontal grid
+						cout << horizontal_grid_1;
+						break;
+					case 5:
+						// print the third horizontal grid
+						cout << horizontal_grid_2;
+						break;
+					}
+				}
+			}
 		}
 	}
-	*/
 
 	return 0;
 }
